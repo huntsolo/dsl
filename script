@@ -1,15 +1,4 @@
-  def FOLDER_NAME = 'Maven'
-  def JOB_REGEX = '.*Maven.*'
-
-  import jenkins.*
-  import jenkins.model.*
-  import hudson.*
-  import hudson.model.*
-
-  jenkins = Jenkins.instance
-
-
-pipelineJob('Maven_Pipeline') {
+pipelineJob('DSL_Pipeline_new') {
 
   def repo = 'https://github.com/huntsolo/maven-test'
 
@@ -35,31 +24,4 @@ pipelineJob('Maven_Pipeline') {
       }
     }
   }
-}
-}
-  def folder = jenkins.getItemByFullName(FOLDER_NAME)
-  if (folder == null) {
-  println "ERROR: Folder '$FOLDER_NAME' not found"
-  return
-
-// Find jobs in main folder
-def found = jenkins.items.grep { it.name =~ "${JOB_REGEX}" }
-println "Searching main folder : $found"
-
-// Find jobs in other subfolders
-jenkins.items.grep { it instanceof com.cloudbees.hudson.plugins.folder.Folder }.each { subfolder -> 
-  if(!subfolder.getName().equals(FOLDER_NAME))
-  {
-    println "Searching folder '$subfolder.name'"
-    subfolder.getItems().grep { it.name =~ "${JOB_REGEX}" }.each { job ->
-      println "Found $job.name"
-      found.add(job);
-    }
-  }
-}
-
-// Move them
-found.each { job ->
-  println "Moving '$job.name' to '$folder.name'"
-  Items.move(job, folder)
 }
