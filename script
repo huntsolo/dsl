@@ -1,4 +1,4 @@
-def FOLDER_NAME = 'Maven'
+  def FOLDER_NAME = 'Maven'
   def JOB_REGEX = '.*Maven.*'
 
   import jenkins.*
@@ -36,11 +36,11 @@ pipelineJob('Maven_Pipeline') {
     }
   }
 }
+}
   def folder = jenkins.getItemByFullName(FOLDER_NAME)
   if (folder == null) {
   println "ERROR: Folder '$FOLDER_NAME' not found"
   return
-}
 
 // Find jobs in main folder
 def found = jenkins.items.grep { it.name =~ "${JOB_REGEX}" }
