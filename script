@@ -1,6 +1,6 @@
 pipelineJob('DSL_Pipeline') {
 
-  def repo = 'https://github.com/huntsolo/maven-test.git'
+  def repo = 'https://github.com/huntsolo/maven-test'
 
   triggers {
     scm('H/5 * * * *')
