@@ -1,7 +1,4 @@
-pipelineJob('Maven_Pipeline') {
-
-  def repo = 'https://github.com/huntsolo/maven-test'
-  def FOLDER_NAME = 'Maven'
+def FOLDER_NAME = 'Maven'
   def JOB_REGEX = '.*Maven.*'
 
   import jenkins.*
@@ -11,6 +8,10 @@ pipelineJob('Maven_Pipeline') {
 
   jenkins = Jenkins.instance
 
+
+pipelineJob('Maven_Pipeline') {
+
+  def repo = 'https://github.com/huntsolo/maven-test'
 
   triggers {
     scm('H/5 * * * *')
@@ -34,7 +35,7 @@ pipelineJob('Maven_Pipeline') {
       }
     }
   }
-  
+}
   def folder = jenkins.getItemByFullName(FOLDER_NAME)
   if (folder == null) {
   println "ERROR: Folder '$FOLDER_NAME' not found"
@@ -61,5 +62,4 @@ jenkins.items.grep { it instanceof com.cloudbees.hudson.plugins.folder.Folder }.
 found.each { job ->
   println "Moving '$job.name' to '$folder.name'"
   Items.move(job, folder)
-}
 }
