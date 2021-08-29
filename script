@@ -1,4 +1,4 @@
-pipelineJob('DSL_Pipeline_new') {
+pipelineJob('Maven_Pipeline') {
 
   def repo = 'https://github.com/huntsolo/maven-test'
 
